@@ -3,7 +3,6 @@ package repository
 import model.CarDto
 
 interface CrudRepository<ID, T> {
-    fun save(t:T): Int
     fun findAll(): List<T>
     fun dropById(id: ID): Boolean
     fun findById(id: ID): T?

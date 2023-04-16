@@ -26,7 +26,7 @@ class JsonStorage : Storage {
 
         var carsDto = cars.stream().toList()
 
-        println("llevamos a json")
+        println("llevamos a json ${carsDto.size}")
         //  pretty print
         File(url).writeText(adapter.indent("  ").toJson(carsDto))
         return true

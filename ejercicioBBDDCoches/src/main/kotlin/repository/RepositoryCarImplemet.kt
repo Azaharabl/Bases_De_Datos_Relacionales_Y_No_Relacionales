@@ -7,17 +7,6 @@ import java.sql.Statement
 class RepositoryCarImplemet():RepositoryCar {
 
 
-    override fun save(car: CarDto): Int {
-        var res = 0
-        if (exixstsById(car.id)){
-            println("el coche con id ${car.id} ya exite en la bbdd por lo que guardamos la modificacion")
-            var ok = updateByUuid(car)
-            if(ok){res = 1;}
-        }else{
-           res= create(car)
-        }
-        return res
-    }
 
     override fun findAll(): List<CarDto> {
         var sql = "SELECT * FROM cars"

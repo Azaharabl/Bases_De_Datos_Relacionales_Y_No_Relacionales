@@ -23,7 +23,8 @@ dependencies {
     implementation("org.xerial:sqlite-jdbc:3.41.2.1")
     //RESULT
     implementation("com.michael-bull.kotlin-result:kotlin-result:1.1.17")
-
+    //CACHE4K
+    implementation("io.github.reactivecircus.cache4k:cache4k:0.9.0")
 
 }
 
