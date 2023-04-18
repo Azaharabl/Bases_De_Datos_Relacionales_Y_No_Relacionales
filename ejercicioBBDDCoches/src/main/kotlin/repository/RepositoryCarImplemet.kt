@@ -1,7 +1,10 @@
 package repository
 
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Types
 import model.CarDto
 import service.DatabaseManager
+import java.io.File
 import java.sql.Statement
 
 class RepositoryCarImplemet():RepositoryCar {
@@ -28,8 +31,10 @@ class RepositoryCarImplemet():RepositoryCar {
                 list.add(carDto)
             }
         }
+        DatabaseManager.cerrarDB()
         return list
     }
+
 
     override fun dropById(id: Long):Boolean {
         var sql = "DELETE FROM cars WHERE id =?"
@@ -38,8 +43,10 @@ class RepositoryCarImplemet():RepositoryCar {
             s.setLong(1, id)
             res = s.executeUpdate()
         }
+        DatabaseManager.cerrarDB()
         return res > 0
     }
+
 
     override fun findById(id: Long): CarDto? {
         var sql = "SELECT * FROM cars WHERE id =?"
@@ -60,6 +67,7 @@ class RepositoryCarImplemet():RepositoryCar {
                     deleted = res.getString(9)))
             }
         }
+        DatabaseManager.cerrarDB()
         return list.firstOrNull()
     }
 
@@ -82,12 +90,12 @@ class RepositoryCarImplemet():RepositoryCar {
                     deleted = res.getString(9)))
             }
         }
+        DatabaseManager.cerrarDB()
         return list.firstOrNull()
     }
 
     override fun updateByUuid(car: CarDto): Boolean {
-        var sql = "UPDATE cars SET uuid =?, mark =?, model =?, date =?, engine =?," +
-                " createAt =?, updateAt =?, deleted =? WHERE id =?"
+         var sql = "UPDATE cars SET uuid =?, mark =?, model =?, date =?, engine =? , createAt =?, updateAt =?, deleted =? WHERE id =?"
         var res = 0
         var ps = DatabaseManager.db.prepareStatement(sql).use { s ->
             s.setString(1,car.uuid)
@@ -101,11 +109,13 @@ class RepositoryCarImplemet():RepositoryCar {
             s.setLong(9,car.id)
             res = s.executeUpdate()
         }
+        DatabaseManager.cerrarDB()
         return res > 0
     }
 
     override fun exixstsById(id: Long): Boolean {
         var coche = findById(id)
+        DatabaseManager.cerrarDB()
         if (coche == null) {
             return false
         }
@@ -137,10 +147,10 @@ class RepositoryCarImplemet():RepositoryCar {
                 id = key.getLong(1)
             }
             println("insertamos con id : " +id)
+            DatabaseManager.cerrarDB()
             return res
         }
     }
-
 
 
 }

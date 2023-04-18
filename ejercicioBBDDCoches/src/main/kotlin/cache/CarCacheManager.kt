@@ -1,6 +1,9 @@
 package cache
 import io.github.reactivecircus.cache4k.Cache
 import model.CarDto
+import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.toDuration
 
 
 object CarCacheManager {
@@ -11,5 +14,7 @@ object CarCacheManager {
     val size = 100
 
     // Creamos la caché y configuramos a medida
-    val cache = Cache.Builder().maximumCacheSize(100).build<Long, CarDto>()
+    val cache = Cache.Builder().maximumCacheSize(100)
+        .build<Long, CarDto>()
+
 }

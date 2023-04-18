@@ -1,0 +1,39 @@
+
+--creacion de tablas
+CREATE TABLE IF NOT EXISTS cars (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                uuid TEXT UNIQUE,
+                mark TEXT,
+                model TEXT,
+                date TEXT,
+                engine TEXT,
+                createAt TEXT,
+                updateAt TEXT,
+                deleted TEXT
+             );
+
+
+findAll:
+SELECT * FROM cars;
+
+dropById:
+DELETE FROM cars WHERE id = ?;
+
+findById:
+SELECT * FROM cars WHERE id = ?;
+
+
+
+findByUuid:
+SELECT * FROM cars WHERE uuid = ?;
+
+updateById:
+UPDATE cars SET uuid =?, mark =?, model =?, date =?, engine =? , createAt =?, updateAt =?, deleted =? WHERE id =?;
+
+
+exixstsById:
+SELECT * FROM cars WHERE id = ? ;
+
+create:
+INSERT INTO cars (uuid, mark, model, date, engine, createAt,updateAt,deleted) VALUES(?,?,?,?,?,?,?,?);
+

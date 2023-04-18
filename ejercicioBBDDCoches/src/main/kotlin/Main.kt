@@ -5,6 +5,7 @@ import config.AppConfig
 import controller.CarController
 import model.Car
 import repository.RepositoryCarImplemet
+import service.DatabaseManager
 import storage.CsvStorage
 import storage.JsonStorage
 import java.io.File
@@ -19,12 +20,14 @@ fun main(args: Array<String>) {
 
 
 
+
     //obtenemos path de obtencion de datos
     val resource = ClassLoader.getSystemResource("config.properties")
     var pathCsv =  (Paths.get(resource.toURI()).parent).toString() + Paths.get(AppConfig.pathFilesCsv).toString()
 
     //obtenemos todos los datos y los metemos en la bbdd
     c.initCarsFormCsv(pathCsv,true)
+
 
     println("imprimir los coches que tenemos en la bbdd" )
     println(c.getAllCarr())
@@ -69,6 +72,7 @@ fun main(args: Array<String>) {
     var list = c.getAllCarr()
     println(list )
 
+
     //volvemos a obtenemos todos los datos y los metemos en la bbdd
     c.initCarsFormCsv(pathCsv,true)
 
@@ -81,8 +85,9 @@ fun main(args: Array<String>) {
     c.saveAllCarsToJson(pathJson,list).onSuccess { println("fichero realizado conexito") }.onFailure { println(it.message) }
 
 
+    DatabaseManager.cerrarDB()
 
-
+    System.exit(0)
 
 }
 

@@ -1,0 +1,46 @@
+[
+  {
+    "id": 5,
+    "uuid": "f7fe573b-9664-41cb-90fb-1ed95148205d",
+    "mark": "citroen",
+    "model": "citroen",
+    "date": "2023-03-11",
+    "engine": "Diesel",
+    "createAt": "2023-03-11",
+    "updateAt": "2023-03-11",
+    "deleted": "false"
+  },
+  {
+    "id": 6,
+    "uuid": "f8fe573b-9664-41cb-90fb-1ed95148203d",
+    "mark": "volvo",
+    "model": "volvo",
+    "date": "2023-02-12",
+    "engine": "Hibrido",
+    "createAt": "2023-03-11",
+    "updateAt": "2023-03-11",
+    "deleted": "false"
+  },
+  {
+    "id": 7,
+    "uuid": "f9fe573b-9664-41cb-90fb-1ed95148202d",
+    "mark": "sara picaso",
+    "model": "sara picaso",
+    "date": "2023-04-11",
+    "engine": "Electrico",
+    "createAt": "2023-03-11",
+    "updateAt": "2023-03-11",
+    "deleted": "false"
+  },
+  {
+    "id": 8,
+    "uuid": "f1fe573b-9664-41cb-90fb-1ed95148204d",
+    "mark": "rexton",
+    "model": "sanJon",
+    "date": "2023-04-11",
+    "engine": "Gasolina",
+    "createAt": "2023-03-11",
+    "updateAt": "2023-03-11",
+    "deleted": "true"
+  }
+]

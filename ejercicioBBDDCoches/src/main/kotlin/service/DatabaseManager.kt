@@ -4,15 +4,15 @@ import config.AppConfig
 import java.sql.DriverManager
 
 object DatabaseManager {
-    val db get() = DriverManager.getConnection(AppConfig.databaseUrl)
+    val db get() = DriverManager.getConnection(AppConfig.dbUrl)
 
     init {
-        if(AppConfig.dataBaseDropTables.toBoolean()){
-            println("en el fichero config esta declarado que borremos la tabla, ... Borrando")
+        if(AppConfig.dbDropTables.toBoolean()){
             dropTables()
         }
         println("lellendo o creando la tabla")
         createTables()
+        cerrarDB()
     }
 
     private fun dropTables() {
@@ -42,6 +42,9 @@ object DatabaseManager {
             }
         }
 
+    }
+    fun cerrarDB() {
+        db.close()
     }
 
 
