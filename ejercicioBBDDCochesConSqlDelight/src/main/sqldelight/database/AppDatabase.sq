@@ -1,39 +1,39 @@
 
 --creacion de tablas
-CREATE TABLE IF NOT EXISTS cars (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                uuid TEXT UNIQUE,
-                mark TEXT,
-                model TEXT,
-                date TEXT,
-                engine TEXT,
-                createAt TEXT,
-                updateAt TEXT,
-                deleted TEXT
+CREATE TABLE IF NOT EXISTS carDto (
+                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+                uuid TEXT UNIQUE NOT NULL,
+                mark TEXT NOT NULL,
+                model TEXT NOT NULL,
+                date TEXT NOT NULL,
+                engine TEXT NOT NULL,
+                createAt TEXT NOT NULL,
+                updateAt TEXT NOT NULL,
+                deleted TEXT NOT NULL
              );
 
 
 findAll:
-SELECT * FROM cars;
+SELECT * FROM carDto;
 
 dropById:
-DELETE FROM cars WHERE id = ?;
+DELETE FROM carDto WHERE id = ?;
 
 findById:
-SELECT * FROM cars WHERE id = ?;
+SELECT * FROM carDto WHERE id = ?;
 
 
 
 findByUuid:
-SELECT * FROM cars WHERE uuid = ?;
+SELECT * FROM carDto WHERE uuid = ?;
 
 updateById:
-UPDATE cars SET uuid =?, mark =?, model =?, date =?, engine =? , createAt =?, updateAt =?, deleted =? WHERE id =?;
+UPDATE carDto SET uuid =?, mark =?, model =?, date =?, engine =? , createAt =?, updateAt =?, deleted =? WHERE id =?;
 
 
 exixstsById:
-SELECT * FROM cars WHERE id = ? ;
+SELECT * FROM carDto WHERE id = ? ;
 
 create:
-INSERT INTO cars (uuid, mark, model, date, engine, createAt,updateAt,deleted) VALUES(?,?,?,?,?,?,?,?);
+INSERT INTO carDto (uuid, mark, model, date, engine, createAt,updateAt,deleted) VALUES(?,?,?,?,?,?,?,?);
 

@@ -38,6 +38,7 @@ class CarController (
        var result :Result<Car, CarErrors>
         if (repositoryCar.exixstsById(car.id)){
             println("el coche con id ${car.id} ya exite en la bbdd por lo que guardamos la modificacion")
+            //todo no va
             var ok = repositoryCar.updateByUuid(car.CarToCarDto())
             if(ok){
                 result = Ok(car)

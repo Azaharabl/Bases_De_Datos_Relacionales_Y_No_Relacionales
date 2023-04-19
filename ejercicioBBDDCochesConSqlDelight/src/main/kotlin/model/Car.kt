@@ -18,4 +18,8 @@ data class Car(
     override fun toString(): String {
         return "Car(id=$id, uuid='$uuid', mark='$mark', model='$model', date=$date, engine=$engine, createAt=$createAt, updateAt=$updateAt, deleted=$deleted)"
     }
+
+
+
+
 }

@@ -1,8 +1,9 @@
 package repository
 
-import model.CarDto
+import database.CarDto
 
-interface RepositoryCar : CrudRepository<Long,CarDto >  {
+
+interface RepositoryCar : CrudRepository<Long, CarDto>  {
 
 
 }

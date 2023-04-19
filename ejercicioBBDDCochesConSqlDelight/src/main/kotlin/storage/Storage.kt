@@ -1,11 +1,10 @@
 package storage
 
-import database.Cars
-import model.Car
-import model.CarDto
+import database.CarDto
+
 
 interface Storage {
 
-    fun readCars(url : String): ArrayList<Cars>
-    fun writeCars(url: String, cars: List<Cars>): Boolean
+    fun readCarDto(url : String): ArrayList<CarDto>
+    fun writeCarDto(url: String, cars: List<CarDto>): Boolean
 }

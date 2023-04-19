@@ -26,6 +26,7 @@ dependencies {
     //CACHE4K
     implementation("io.github.reactivecircus.cache4k:cache4k:0.9.0")
 
+    //SQLdelight
     // SqlDeLight, lo mejor es con SQLite para hacer las cosas reactivas o con corrutinas
     implementation("com.squareup.sqldelight:runtime:1.5.4")
     // SQLite para SqlDeLight

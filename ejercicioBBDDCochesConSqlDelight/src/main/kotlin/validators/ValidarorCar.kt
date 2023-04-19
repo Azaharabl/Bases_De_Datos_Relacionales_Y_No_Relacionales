@@ -5,10 +5,10 @@ import com.github.michaelbull.result.Ok
 import errors.CarErrors
 import model.Car
 import com.github.michaelbull.result.Result
-import database.Cars
+import database.CarDto
 
 
-fun Cars.ValidarorCar (): Result<Cars, CarErrors> {
+fun CarDto.ValidarorCar (): Result<CarDto, CarErrors> {
 
         if(uuid == null){ return Err(CarErrors.carNotValid("el uuid no es Nulo"))
         }else if (uuid.isBlank()){

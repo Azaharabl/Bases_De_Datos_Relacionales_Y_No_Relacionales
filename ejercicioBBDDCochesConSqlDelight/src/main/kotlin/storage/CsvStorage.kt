@@ -1,12 +1,12 @@
 package storage
 
-import database.Cars
-import model.CarDto
+
+import database.CarDto
 import java.io.File
 import kotlin.collections.ArrayList
 
-class CsvStorage: Storage {
-    override fun readCars(url: String): ArrayList<Cars> {
+class CsvStorage : Storage {
+    override fun readCarDto(url: String): ArrayList<CarDto> {
 
         println("url: " + url)
 
@@ -17,10 +17,10 @@ class CsvStorage: Storage {
             println(" el fichero no se puede leer")
             return ArrayList()
         }
-        val cars = ArrayList<Cars>()
+        val cars = ArrayList<CarDto>()
         try {
             println("leemos lineas")
-            var lista = File(url).readLines().drop(1).map { s -> getCars(s) }
+            var lista = File(url).readLines().drop(1).map { s -> getCarDto(s) }
             cars.addAll(lista)
 
         } catch (e: Exception) {
@@ -30,14 +30,14 @@ class CsvStorage: Storage {
 
     }
 
-     override fun writeCars(url: String, cars: List<Cars>): Boolean {
+    override fun writeCarDto(url: String, cars: List<CarDto>): Boolean {
         TODO("Not yet implemented")
     }
 
-     private fun getCars (s : String): Cars {
+     private fun getCarDto (s : String): CarDto {
 
         var campo =s.split(",")
-        return Cars(
+        return CarDto(
             0L,
             campo[0].trim(),
             campo[1].trim(),

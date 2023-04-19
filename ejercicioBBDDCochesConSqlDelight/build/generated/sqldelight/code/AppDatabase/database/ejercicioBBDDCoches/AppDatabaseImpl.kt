@@ -7,7 +7,7 @@ import com.squareup.sqldelight.db.SqlCursor
 import com.squareup.sqldelight.db.SqlDriver
 import database.AppDatabase
 import database.AppDatabaseQueries
-import database.Cars
+import database.CarDto
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -34,16 +34,16 @@ private class AppDatabaseImpl(
 
     public override fun create(driver: SqlDriver): Unit {
       driver.execute(null, """
-          |CREATE TABLE IF NOT EXISTS cars (
-          |                id INTEGER PRIMARY KEY AUTOINCREMENT,
-          |                uuid TEXT UNIQUE,
-          |                mark TEXT,
-          |                model TEXT,
-          |                date TEXT,
-          |                engine TEXT,
-          |                createAt TEXT,
-          |                updateAt TEXT,
-          |                deleted TEXT
+          |CREATE TABLE IF NOT EXISTS carDto (
+          |                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+          |                uuid TEXT UNIQUE NOT NULL,
+          |                mark TEXT NOT NULL,
+          |                model TEXT NOT NULL,
+          |                date TEXT NOT NULL,
+          |                engine TEXT NOT NULL,
+          |                createAt TEXT NOT NULL,
+          |                updateAt TEXT NOT NULL,
+          |                deleted TEXT NOT NULL
           |             )
           """.trimMargin(), 0)
     }
@@ -71,32 +71,32 @@ private class AppDatabaseQueriesImpl(
 
   public override fun <T : Any> findAll(mapper: (
     id: Long,
-    uuid: String?,
-    mark: String?,
-    model: String?,
-    date: String?,
-    engine: String?,
-    createAt: String?,
-    updateAt: String?,
-    deleted: String?
+    uuid: String,
+    mark: String,
+    model: String,
+    date: String,
+    engine: String,
+    createAt: String,
+    updateAt: String,
+    deleted: String
   ) -> T): Query<T> = Query(949119869, findAll, driver, "AppDatabase.sq", "findAll",
-      "SELECT * FROM cars") { cursor ->
+      "SELECT * FROM carDto") { cursor ->
     mapper(
       cursor.getLong(0)!!,
-      cursor.getString(1),
-      cursor.getString(2),
-      cursor.getString(3),
-      cursor.getString(4),
-      cursor.getString(5),
-      cursor.getString(6),
-      cursor.getString(7),
-      cursor.getString(8)
+      cursor.getString(1)!!,
+      cursor.getString(2)!!,
+      cursor.getString(3)!!,
+      cursor.getString(4)!!,
+      cursor.getString(5)!!,
+      cursor.getString(6)!!,
+      cursor.getString(7)!!,
+      cursor.getString(8)!!
     )
   }
 
-  public override fun findAll(): Query<Cars> = findAll { id, uuid, mark, model, date, engine,
+  public override fun findAll(): Query<CarDto> = findAll { id, uuid, mark, model, date, engine,
       createAt, updateAt, deleted ->
-    Cars(
+    CarDto(
       id,
       uuid,
       mark,
@@ -111,31 +111,31 @@ private class AppDatabaseQueriesImpl(
 
   public override fun <T : Any> findById(id: Long, mapper: (
     id: Long,
-    uuid: String?,
-    mark: String?,
-    model: String?,
-    date: String?,
-    engine: String?,
-    createAt: String?,
-    updateAt: String?,
-    deleted: String?
+    uuid: String,
+    mark: String,
+    model: String,
+    date: String,
+    engine: String,
+    createAt: String,
+    updateAt: String,
+    deleted: String
   ) -> T): Query<T> = FindByIdQuery(id) { cursor ->
     mapper(
       cursor.getLong(0)!!,
-      cursor.getString(1),
-      cursor.getString(2),
-      cursor.getString(3),
-      cursor.getString(4),
-      cursor.getString(5),
-      cursor.getString(6),
-      cursor.getString(7),
-      cursor.getString(8)
+      cursor.getString(1)!!,
+      cursor.getString(2)!!,
+      cursor.getString(3)!!,
+      cursor.getString(4)!!,
+      cursor.getString(5)!!,
+      cursor.getString(6)!!,
+      cursor.getString(7)!!,
+      cursor.getString(8)!!
     )
   }
 
-  public override fun findById(id: Long): Query<Cars> = findById(id) { id_, uuid, mark, model, date,
-      engine, createAt, updateAt, deleted ->
-    Cars(
+  public override fun findById(id: Long): Query<CarDto> = findById(id) { id_, uuid, mark, model,
+      date, engine, createAt, updateAt, deleted ->
+    CarDto(
       id_,
       uuid,
       mark,
@@ -148,33 +148,33 @@ private class AppDatabaseQueriesImpl(
     )
   }
 
-  public override fun <T : Any> findByUuid(uuid: String?, mapper: (
+  public override fun <T : Any> findByUuid(uuid: String, mapper: (
     id: Long,
-    uuid: String?,
-    mark: String?,
-    model: String?,
-    date: String?,
-    engine: String?,
-    createAt: String?,
-    updateAt: String?,
-    deleted: String?
+    uuid: String,
+    mark: String,
+    model: String,
+    date: String,
+    engine: String,
+    createAt: String,
+    updateAt: String,
+    deleted: String
   ) -> T): Query<T> = FindByUuidQuery(uuid) { cursor ->
     mapper(
       cursor.getLong(0)!!,
-      cursor.getString(1),
-      cursor.getString(2),
-      cursor.getString(3),
-      cursor.getString(4),
-      cursor.getString(5),
-      cursor.getString(6),
-      cursor.getString(7),
-      cursor.getString(8)
+      cursor.getString(1)!!,
+      cursor.getString(2)!!,
+      cursor.getString(3)!!,
+      cursor.getString(4)!!,
+      cursor.getString(5)!!,
+      cursor.getString(6)!!,
+      cursor.getString(7)!!,
+      cursor.getString(8)!!
     )
   }
 
-  public override fun findByUuid(uuid: String?): Query<Cars> = findByUuid(uuid) { id, uuid_, mark,
+  public override fun findByUuid(uuid: String): Query<CarDto> = findByUuid(uuid) { id, uuid_, mark,
       model, date, engine, createAt, updateAt, deleted ->
-    Cars(
+    CarDto(
       id,
       uuid_,
       mark,
@@ -189,31 +189,31 @@ private class AppDatabaseQueriesImpl(
 
   public override fun <T : Any> exixstsById(id: Long, mapper: (
     id: Long,
-    uuid: String?,
-    mark: String?,
-    model: String?,
-    date: String?,
-    engine: String?,
-    createAt: String?,
-    updateAt: String?,
-    deleted: String?
+    uuid: String,
+    mark: String,
+    model: String,
+    date: String,
+    engine: String,
+    createAt: String,
+    updateAt: String,
+    deleted: String
   ) -> T): Query<T> = ExixstsByIdQuery(id) { cursor ->
     mapper(
       cursor.getLong(0)!!,
-      cursor.getString(1),
-      cursor.getString(2),
-      cursor.getString(3),
-      cursor.getString(4),
-      cursor.getString(5),
-      cursor.getString(6),
-      cursor.getString(7),
-      cursor.getString(8)
+      cursor.getString(1)!!,
+      cursor.getString(2)!!,
+      cursor.getString(3)!!,
+      cursor.getString(4)!!,
+      cursor.getString(5)!!,
+      cursor.getString(6)!!,
+      cursor.getString(7)!!,
+      cursor.getString(8)!!
     )
   }
 
-  public override fun exixstsById(id: Long): Query<Cars> = exixstsById(id) { id_, uuid, mark, model,
-      date, engine, createAt, updateAt, deleted ->
-    Cars(
+  public override fun exixstsById(id: Long): Query<CarDto> = exixstsById(id) { id_, uuid, mark,
+      model, date, engine, createAt, updateAt, deleted ->
+    CarDto(
       id_,
       uuid,
       mark,
@@ -227,7 +227,7 @@ private class AppDatabaseQueriesImpl(
   }
 
   public override fun dropById(id: Long): Unit {
-    driver.execute(-395357268, """DELETE FROM cars WHERE id = ?""", 1) {
+    driver.execute(-395357268, """DELETE FROM carDto WHERE id = ?""", 1) {
       bindLong(1, id)
     }
     notifyQueries(-395357268, {database.appDatabaseQueries.findById +
@@ -236,18 +236,18 @@ private class AppDatabaseQueriesImpl(
   }
 
   public override fun updateById(
-    uuid: String?,
-    mark: String?,
-    model: String?,
-    date: String?,
-    engine: String?,
-    createAt: String?,
-    updateAt: String?,
-    deleted: String?,
+    uuid: String,
+    mark: String,
+    model: String,
+    date: String,
+    engine: String,
+    createAt: String,
+    updateAt: String,
+    deleted: String,
     id: Long
   ): Unit {
     driver.execute(1582037446,
-        """UPDATE cars SET uuid =?, mark =?, model =?, date =?, engine =? , createAt =?, updateAt =?, deleted =? WHERE id =?""",
+        """UPDATE carDto SET uuid =?, mark =?, model =?, date =?, engine =? , createAt =?, updateAt =?, deleted =? WHERE id =?""",
         9) {
       bindString(1, uuid)
       bindString(2, mark)
@@ -265,17 +265,17 @@ private class AppDatabaseQueriesImpl(
   }
 
   public override fun create(
-    uuid: String?,
-    mark: String?,
-    model: String?,
-    date: String?,
-    engine: String?,
-    createAt: String?,
-    updateAt: String?,
-    deleted: String?
+    uuid: String,
+    mark: String,
+    model: String,
+    date: String,
+    engine: String,
+    createAt: String,
+    updateAt: String,
+    deleted: String
   ): Unit {
     driver.execute(506960903,
-        """INSERT INTO cars (uuid, mark, model, date, engine, createAt,updateAt,deleted) VALUES(?,?,?,?,?,?,?,?)""",
+        """INSERT INTO carDto (uuid, mark, model, date, engine, createAt,updateAt,deleted) VALUES(?,?,?,?,?,?,?,?)""",
         8) {
       bindString(1, uuid)
       bindString(2, mark)
@@ -296,7 +296,7 @@ private class AppDatabaseQueriesImpl(
     mapper: (SqlCursor) -> T
   ) : Query<T>(findById, mapper) {
     public override fun execute(): SqlCursor = driver.executeQuery(-642013834,
-        """SELECT * FROM cars WHERE id = ?""", 1) {
+        """SELECT * FROM carDto WHERE id = ?""", 1) {
       bindLong(1, id)
     }
 
@@ -304,11 +304,11 @@ private class AppDatabaseQueriesImpl(
   }
 
   private inner class FindByUuidQuery<out T : Any>(
-    public val uuid: String?,
+    public val uuid: String,
     mapper: (SqlCursor) -> T
   ) : Query<T>(findByUuid, mapper) {
-    public override fun execute(): SqlCursor = driver.executeQuery(null,
-        """SELECT * FROM cars WHERE uuid ${ if (uuid == null) "IS" else "=" } ?""", 1) {
+    public override fun execute(): SqlCursor = driver.executeQuery(1500373334,
+        """SELECT * FROM carDto WHERE uuid = ?""", 1) {
       bindString(1, uuid)
     }
 
@@ -320,7 +320,7 @@ private class AppDatabaseQueriesImpl(
     mapper: (SqlCursor) -> T
   ) : Query<T>(exixstsById, mapper) {
     public override fun execute(): SqlCursor = driver.executeQuery(-518949481,
-        """SELECT * FROM cars WHERE id = ?""", 1) {
+        """SELECT * FROM carDto WHERE id = ?""", 1) {
       bindLong(1, id)
     }
 
