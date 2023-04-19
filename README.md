@@ -1,7 +1,8 @@
 # Bases_De_Datos_Relacionales
-Ejercicio de BBDD con SQLite, con operaciones CRUD y leyendo y exportando a ficheros. 
+1. Ejercicio de BBDD con SQLite, con operaciones CRUD y leyendo y exportando a ficheros. 
+2.  Ejercicio de BBDD con SqlDeLight + SQLite, con operaciones CRUD y leyendo y exportando a ficheros
 
-Ejercicio de BBDD SQLite donde:
+## 1. Ejercicio de BBDD SQLite donde:
 
 - Obtendremos unos datos de un Csv
 - Creacion de BBDD sqlite
@@ -23,3 +24,6 @@ Ejercicio de BBDD SQLite donde:
 - Creamos CarStorage para importar o exportar a ficheros
 - Creamos CarRepository para aceder a la BBDD
 - Relacionamos los anteriores con la creación de un CarControlador (M-V-C)
+
+## 2. Ejercicio de BBDD SqlDeLight + BBDD SQLite :
+- es una modificación del primer ejercicio pero usando SqlDelight para el manejo de las Querys de la BBDD
