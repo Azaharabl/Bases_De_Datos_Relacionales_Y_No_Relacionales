@@ -27,3 +27,7 @@
 
 ## 2. Ejercicio de BBDD SqlDeLight + BBDD SQLite :
 - es una modificación del primer ejercicio pero usando SqlDelight para el manejo de las Querys de la BBDD
+
+## 3. Ejercicio de una BBDD de H2 con Hibernate
+- Tenemos una relacion de OneToMany de Persona y Vehiculo
+- Manejo de la BBDD a trabes de Hibernate
