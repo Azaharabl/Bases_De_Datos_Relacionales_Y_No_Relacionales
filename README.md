@@ -3,6 +3,14 @@
 2. Ejercicio de BBDD con SqlDeLight + SQLite, con operaciones CRUD y leyendo y exportando a ficheros
 3. Ejercicio de BBDD de H2 con Hibernate
 4. Ejercicio de BBDD de H2 con Exposed relaciones 1-M , 1-1
+5. Ejercicio de BBDD de Mongo sin Spring (Doker + 1-M + referenciado)
+
+
+
+## Ejercicio de BBDD Mongo 
+- Doker para iniciar la BBDD
+- Relacion 1-M 
+- Id referenciado para unir las dos talas
 
 ## Ejercicio de BBDD de H2 con Exposed 
 - Manejo de relaciones 1 - M
